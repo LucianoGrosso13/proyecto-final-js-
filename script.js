@@ -1,36 +1,3 @@
-// const listaPreguntas = [
-//     {
-//         categoria: "facil",
-//         pregunta: "cual es la capital de portugal: ",
-//         respuesta: "lisboa",
-//     },
-//     {
-//         categoria: "facil",
-//         pregunta: "cual es la capital de argentina: ",
-//         respuesta: "buenos aires",
-//     },
-//     {
-//         categoria: "media",
-//         pregunta: "cual es la capital de noruega: ",
-//         respuesta: "oslo",
-//     },
-//     {
-//         categoria: "media",
-//         pregunta: "cual es la capital de finlandia: ",
-//         respuesta: "helsinki",
-//     },
-//     {
-//         categoria: "dificil",
-//         pregunta: "cual es la capital de nigeria: ",
-//         respuesta: "lagos",
-//     },
-//     {
-//         categoria: "dificil",
-//         pregunta: "cual es la capital de mozambike: ",
-//         respuesta: "maputo",
-//     }
-// ]
-
 // const eleccionDificultad = prompt("ingrese la dificultad de las preguntas: ");
 // let puntos=0;
 // let intentos=3;
@@ -91,6 +58,7 @@
 //     }
 // }
 
+// codigo para pasar de la dificultad a las preguntas del juego
 const paso1 = document.getElementById("paso1");
 const paso2 = document.getElementById("paso2");
 
@@ -105,4 +73,56 @@ selectDificultad.addEventListener("change", () => {
     }
 
 });
+//
+
+// Funciones
+
+//carga la pregunta, y desordena las opciones 
+function cargarPregunta(i,vectorDificultad){
+    let objetoPregunta = vectorDificultad[i].pregunta;
+    let opciones = [...vectorDificultad[i].incorrecta];
+    opciones.push(vectorDificultad[i].correcta);
+    opciones.sort(()=> Math.random()-0.5)
+    document.getElementById("pregunta").innerHTML = objetoPregunta;
+    document.getElementById("opcion1").innerHTML = opciones[0];
+    document.getElementById("opcion2").innerHTML = opciones[1];
+    document.getElementById("opcion3").innerHTML = opciones[2];
+    document.getElementById("opcion4").innerHTML = opciones[3];
+
+}
+
+// inicializa el juego con la dificultad elegida
+function seleccionarDificultad(vectorDificultad,dificultadValue,dificultadCategoria){
+        //crea el vector de la dificultad elegida
+        if(selectDificultad.value == dificultadValue){
+            const vectorDificultad = listaPreguntas.filter( (listaPreguntas) => {
+                return listaPreguntas.categoria===dificultadCategoria;
+            })
+            //desordeno el vector de preguntas
+            vectorDificultad.sort(()=> Math.random()-0.5);
+            console.log(vectorDificultad);
+    
+            //carga las preguntas
+            for(let i=0; i<vectorDificultad.length; i++){
+                cargarPregunta(i,vectorDificultad);
+            }
+        }
+}
+selectDificultad.addEventListener("change", () => {
+    const dificultadFacil=0;
+    const dificultadMedia=0;
+    const dificultadDificil=0;
+
+
+    seleccionarDificultad(dificultadFacil,"Facil","facil");
+    seleccionarDificultad(dificultadMedia,"Media","media");
+    seleccionarDificultad(dificultadDificil,"Dificil","dificil");
+
+
+
+});
+
+
+
+
 
