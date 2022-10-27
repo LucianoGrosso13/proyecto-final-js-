@@ -58,32 +58,45 @@
 //     }
 // }
 
-// codigo para pasar de la dificultad a las preguntas del juego
+// variables
+
+let puntos = 0;
+let intentos = 3;
+let indicePregunta = 0;
+
+dificultadFacil = listaPreguntas.filter( (listaPreguntas) => {
+    return listaPreguntas.categoria==="facil";
+})
+
+dificultadMedia = listaPreguntas.filter( (listaPreguntas) => {
+    return listaPreguntas.categoria==="media";
+})
+
+dificultadDificil = listaPreguntas.filter( (listaPreguntas) => {
+    return listaPreguntas.categoria==="dificil";
+})
+
 const paso1 = document.getElementById("paso1");
 const paso2 = document.getElementById("paso2");
 
 const selectDificultad = document.getElementById("dificultad");
 
-selectDificultad.addEventListener("change", () => {
-
-    if(selectDificultad.value !== "") {
-
-        paso1.className = "noMostrar";
-        paso2.className = "";
-    }
-
-});
-//
 
 // Funciones
 
 //carga la pregunta, y desordena las opciones 
 function cargarPregunta(i,vectorDificultad){
-    let objetoPregunta = vectorDificultad[i].pregunta;
-    let opciones = [...vectorDificultad[i].incorrecta];
+    
+    //guardo la opcion correcta en una variable para poder usarla en la funcion de elegir opcciones
+    objetoCorrecta = vectorDificultad[i].correcta
+
+    opciones = [...vectorDificultad[i].incorrecta];
+
     opciones.push(vectorDificultad[i].correcta);
+
     opciones.sort(()=> Math.random()-0.5)
-    document.getElementById("pregunta").innerHTML = objetoPregunta;
+
+    document.getElementById("pregunta").innerHTML = vectorDificultad[i].pregunta;
     document.getElementById("opcion1").innerHTML = opciones[0];
     document.getElementById("opcion2").innerHTML = opciones[1];
     document.getElementById("opcion3").innerHTML = opciones[2];
@@ -95,32 +108,110 @@ function cargarPregunta(i,vectorDificultad){
 function seleccionarDificultad(vectorDificultad,dificultadValue,dificultadCategoria){
         //crea el vector de la dificultad elegida
         if(selectDificultad.value == dificultadValue){
-            const vectorDificultad = listaPreguntas.filter( (listaPreguntas) => {
+            vectorDificultad = listaPreguntas.filter( (listaPreguntas) => {
                 return listaPreguntas.categoria===dificultadCategoria;
             })
             //desordeno el vector de preguntas
             vectorDificultad.sort(()=> Math.random()-0.5);
             console.log(vectorDificultad);
-    
-            //carga las preguntas
-            for(let i=0; i<vectorDificultad.length; i++){
-                cargarPregunta(i,vectorDificultad);
-            }
+        }
+        //carga las preguntas
+        for(let i=0; i<3; i++){
+            cargarPregunta(i,vectorDificultad)
         }
 }
+
+// //funcion para que te diga si la opcion es correcta o incorrecta
+function elegirOpcion(i){
+    validezRespuesta = opciones[i] == objetoCorrecta;
+
+    if(validezRespuesta){
+        puntos+=1;
+        console.log(`tus puntos son ${puntos}`);
+        Swal.fire({
+            title: " Respuesta Correcta",
+            text: "La respuesta es correcta",
+            icon: "success",
+            timer: 1000,
+            showConfirmButton: false
+        }); 
+    } else{
+        console.log(intentos)
+        intentos-=1
+        console.log(`te quedan ${intentos} intentos`)
+        Swal.fire({
+            title: " Respuesta Incorrecta",
+            text: `La respuesta correcta es "${objetoCorrecta}" `,
+               icon: "error",
+        });
+    }
+         
+    switch (selectDificultad.value){
+        case "Facil":
+            console.log(`indice de pregunta ${indicePregunta}`)
+            cargarPregunta(indicePregunta,dificultadFacil)
+            indicePregunta+=1;
+            break;
+        case "Media":
+            console.log(`indice de pregunta ${indicePregunta}`)
+            cargarPregunta(indicePregunta,dificultadMedia)
+            indicePregunta+=1;
+            break;
+        case "Dificil":
+            console.log(`indice de pregunta ${indicePregunta}`)
+            cargarPregunta(indicePregunta,dificultadDificil)
+            indicePregunta+=1;
+            break;
+    }
+
+    if(puntos===10){
+        Swal.fire({
+            title: `Ganaste la dificultad ${selectDificultad.value}, felicidades!`,
+            text: `Te quedaban ${intentos} intentos`,
+        }); 
+    }
+    if(intentos===0){
+        Swal.fire({
+            title: `Perdiste la dificultad ${selectDificultad.value}, espero que lo reintentes!`,
+            text: `Te quedaste sin intentos`,
+        });
+    }
+}
+
+// codigo para pasar de la dificultad a las preguntas del juego
+
 selectDificultad.addEventListener("change", () => {
-    const dificultadFacil=0;
-    const dificultadMedia=0;
-    const dificultadDificil=0;
 
+    if(selectDificultad.value !== "") {
 
-    seleccionarDificultad(dificultadFacil,"Facil","facil");
-    seleccionarDificultad(dificultadMedia,"Media","media");
-    seleccionarDificultad(dificultadDificil,"Dificil","dificil");
-
-
+        paso1.className = "noMostrar";
+        paso2.className = "";
+    }
 
 });
+
+// segun la dificultad elegida en el select comienza a mostrar las preguntas
+selectDificultad.addEventListener("change", () => {
+    
+    switch (selectDificultad.value){
+        case "Facil":
+            seleccionarDificultad(dificultadFacil,"Facil","facil");
+            break;
+        case "Media":
+            seleccionarDificultad(dificultadMedia,"Media","media");
+            break;
+        case "Dificil":
+            seleccionarDificultad(dificultadDificil,"Dificil","dificil");
+            break;
+    }
+
+});
+
+
+
+
+
+
 
 
 

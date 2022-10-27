@@ -75,7 +75,7 @@
     margin-left: 6%;
     font-family: 'Poppins';
     font-style: normal;
-    font-size: 30px;
+    font-size: 35px;
     color: #2F527B;
     margin-bottom: 10%;
     padding-top: 3%;
@@ -104,10 +104,57 @@
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 500;
-    font-size: 18px;
+    font-size: 22px;
 
     color: rgba(96, 102, 208, 0.8);
 }
+/* .opcionCorrecta{
+    margin-bottom: 5%;
+    margin: 8px;
+    margin-left: 6%;
+    width: 90%;
+    height: 11%;
+    display: flex;  
+    align-items: center;
+    flex-direction: row;
+    padding-left: 3%;
+    padding-top: 2%;
+    
+    background: #93E04B;
+    border: 5px solid white;
+    border-radius: 12px; 
+
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 25px;
+
+    color: white;
+}
+.opcionIncorrecta{
+    margin-bottom: 5%;
+    margin: 8px;
+    margin-left: 6%;
+    width: 90%;
+    height: 11%;
+    display: flex;  
+    align-items: center;
+    flex-direction: row;
+    padding-left: 3%;
+    padding-top: 2%;
+        
+    background: #F5223F;
+    border: 5px solid white;
+    border-radius: 12px; 
+    
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 25px;
+
+    color: white;
+    
+} */
 .btn2:hover{
     background: #F9A826;
     font-weight: 1000;
@@ -172,5 +219,8 @@
     }
     .img-fluid{
         width: 80%;
+    }
+    .question{
+        font-size: 23px;
     }
 } 
