@@ -2,66 +2,6 @@ let listaPreguntas = [
     //dificultad facil
     {
         categoria: "facil",
-        pregunta: "¿De que país es esta bandera? 🇧🇷 ",
-        correcta: "Brasil",
-        incorrecta:[
-            "Perú",
-            "Kosovo",
-            "Portugal"
-        ]
-    },
-    {
-        categoria: "facil",
-        pregunta: "¿De que país es esta bandera? 🇵🇪 ",
-        correcta: "Perú",
-        incorrecta:[
-            "Paraguay",
-            "Bolivia",
-            "Chile"
-        ]
-    },
-    {
-        categoria: "facil",
-        pregunta: "¿De que país es esta bandera? 🇨🇦 ",
-        correcta: "Canada",
-        incorrecta:[
-            "Groenlandia",
-            "Estados Unidos",
-            "Finlandia"
-        ]
-    },
-    {
-        categoria: "facil",
-        pregunta: "¿De que país es esta bandera? 🇲🇽 ",
-        correcta: "Mexico",
-        incorrecta:[
-            "Haiti",
-            "Cuba",
-            "Estados Unidos"
-        ]
-    },
-    {
-        categoria: "facil",
-        pregunta: "¿De que país es esta bandera? 🇨🇴 ",
-        correcta: "Colombia",
-        incorrecta:[
-            "Venezuela",
-            "Ecuador",
-            "Guyana Francesa"
-        ]
-    },
-    {
-        categoria: "facil",
-        pregunta: "¿De que país es esta bandera? 🇶🇦 ",
-        correcta: "Qatar",
-        incorrecta:[
-            "Emiratos Arabes",
-            "Rusia",
-            "Kiribati"
-        ]
-    },
-    {
-        categoria: "facil",
         pregunta: "¿De que país es esta bandera? 🇵🇷 ",
         correcta: "Puerto Rico",
         incorrecta:[
@@ -82,12 +22,32 @@ let listaPreguntas = [
     },
     {
         categoria: "facil",
+        pregunta: "¿De que país es esta bandera? 🇧🇷 ",
+        correcta: "Brasil",
+        incorrecta:[
+            "Perú",
+            "Kosovo",
+            "Portugal"
+        ]
+    },
+    {
+        categoria: "facil",
         pregunta: "¿Cual es la capital de Argentina? ",
         correcta: "Buenos Aires",
         incorrecta:[
             "Santa Fe",
             "La Plata",
             "Rosario"
+        ]
+    },
+    {
+        categoria: "facil",
+        pregunta: "¿De que país es esta bandera? 🇵🇪 ",
+        correcta: "Perú",
+        incorrecta:[
+            "Paraguay",
+            "Bolivia",
+            "Chile"
         ]
     },
     {
@@ -102,12 +62,32 @@ let listaPreguntas = [
     },
     {
         categoria: "facil",
+        pregunta: "¿De que país es esta bandera? 🇨🇦 ",
+        correcta: "Canada",
+        incorrecta:[
+            "Groenlandia",
+            "Estados Unidos",
+            "Finlandia"
+        ]
+    },
+    {
+        categoria: "facil",
         pregunta: "¿Cual es la capital de Francia? ",
         correcta: "Paris",
         incorrecta:[
             "Marsella",
             "Lyon",
             "Lille"
+        ]
+    },
+    {
+        categoria: "facil",
+        pregunta: "¿De que país es esta bandera? 🇲🇽 ",
+        correcta: "Mexico",
+        incorrecta:[
+            "Haiti",
+            "Cuba",
+            "Estados Unidos"
         ]
     },
     {
@@ -122,12 +102,32 @@ let listaPreguntas = [
     },
     {
         categoria: "facil",
+        pregunta: "¿De que país es esta bandera? 🇨🇴 ",
+        correcta: "Colombia",
+        incorrecta:[
+            "Venezuela",
+            "Ecuador",
+            "Guyana Francesa"
+        ]
+    },
+    {
+        categoria: "facil",
         pregunta: "¿Cual es la capital de Ecuador? ",
         correcta: "Quito",
         incorrecta:[
             "Sucre",
             "Bogotá",
             "Lima"
+        ]
+    },
+    {
+        categoria: "facil",
+        pregunta: "¿De que país es esta bandera? 🇶🇦 ",
+        correcta: "Qatar",
+        incorrecta:[
+            "Emiratos Arabes",
+            "Rusia",
+            "Kiribati"
         ]
     },
     {
