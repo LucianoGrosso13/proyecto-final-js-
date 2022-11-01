@@ -1,20 +1,23 @@
 let puntos = 0;
 let intentos = 3;
 let indicePregunta = 0;
-
-let dif = " "
+let dif = " ";
+let msjIntentos = 0;
 
 dificultadFacil = listaPreguntas.filter( (listaPreguntas) => {
     return listaPreguntas.categoria==="facil";
 })
+dificultadFacil.sort(()=> Math.random()-0.5);
 
 dificultadMedia = listaPreguntas.filter( (listaPreguntas) => {
     return listaPreguntas.categoria==="media";
 })
+dificultadMedia.sort(()=> Math.random()-0.5);
 
 dificultadDificil = listaPreguntas.filter( (listaPreguntas) => {
     return listaPreguntas.categoria==="dificil";
 })
+dificultadDificil.sort(()=> Math.random()-0.5);
 
 const paso1 = document.getElementById("paso1");
 const paso2 = document.getElementById("paso2");
@@ -46,20 +49,11 @@ function cargarPregunta(i,vectorDificultad){
 
 // inicializa el juego con la dificultad elegida
 function seleccionarDificultad(vectorDificultad,dificultadValue,dificultadCategoria){
-        //crea el vector de la dificultad elegida
-        if(selectDificultad.value == dificultadValue){
-            vectorDificultad = listaPreguntas.filter( (listaPreguntas) => {
-                return listaPreguntas.categoria===dificultadCategoria;
-            })
-        }
-        //desordeno el vector de preguntas
-        vectorDificultad.sort(()=> Math.random()-0.5);
-        console.log(vectorDificultad); 
 
-        //carga las preguntas
-        for(let i=0;  i<14; i++){
-            cargarPregunta(i,vectorDificultad)
-        }
+    //carga las preguntas
+    for(let i=0;  i<14; i++){
+        cargarPregunta(i,vectorDificultad)
+    }
 }
 
 // //funcion para que te diga si la opcion es correcta o incorrecta
@@ -110,6 +104,7 @@ function elegirOpcion(i){
             dif = "dificil"
             break;
     }
+    msjIntentos=intentos;
 
     if(puntos===5){
         resultado = "ganaste"
@@ -123,6 +118,7 @@ function elegirOpcion(i){
         selectDificultad.value = " "
         puntos = 0
         intentos = 3
+        indicePregunta=0
     }
     if(intentos===0){
         resultado = "perdiste"
@@ -136,15 +132,17 @@ function elegirOpcion(i){
         selectDificultad.value = " "
         puntos = 0
         intentos = 3
+        indicePregunta=0
     }
+       
     //guardo el resultado de tu ultima partida para luego mostrarte
     localStorage.setItem("resultado:",resultado);
     
     localStorage.setItem("dificultad:",dif);
-    
+            
     //muestro la dificultad de tu ultima partida y su resultado
     let textoUltimaPartida = document.getElementById("ultimapartida")
-    textoUltimaPartida.innerHTML = `Tu ultima partida fue en la dificultad ${dif} y ${resultado} la partida con ${intentos} restantes`
+    textoUltimaPartida.innerHTML = `Tu ultima partida fue en la dificultad ${dif} y ${resultado} la partida con ${msjIntentos} intentos restantes`
 }
 
 // codigo para pasar de la dificultad a las preguntas del juego
