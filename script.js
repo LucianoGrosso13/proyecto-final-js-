@@ -56,6 +56,7 @@ function seleccionarDificultad(vectorDificultad,dificultadValue,dificultadCatego
     }
 }
 
+
 // //funcion para que te diga si la opcion es correcta o incorrecta
 function elegirOpcion(i){
     validezRespuesta = opciones[i] == objetoCorrecta;
@@ -64,6 +65,7 @@ function elegirOpcion(i){
 
     let resultado = " "
 
+
     if(validezRespuesta){
         puntos+=1;
         console.log(`tus puntos son ${puntos}`);
@@ -71,7 +73,6 @@ function elegirOpcion(i){
             title: " Respuesta Correcta",
             text: "La respuesta es correcta",
             icon: "success",
-            timer: 1000,
         }); 
     } else{
         console.log(intentos)
@@ -118,7 +119,6 @@ function elegirOpcion(i){
         selectDificultad.value = " "
         puntos = 0
         intentos = 3
-        indicePregunta=0
     }
     if(intentos===0){
         resultado = "perdiste"
@@ -132,9 +132,7 @@ function elegirOpcion(i){
         selectDificultad.value = " "
         puntos = 0
         intentos = 3
-        indicePregunta=0
-    }
-       
+    }       
     //guardo el resultado de tu ultima partida para luego mostrarte
     localStorage.setItem("resultado:",resultado);
     
@@ -144,6 +142,7 @@ function elegirOpcion(i){
     let textoUltimaPartida = document.getElementById("ultimapartida")
     textoUltimaPartida.innerHTML = `Tu ultima partida fue en la dificultad ${dif} y ${resultado} la partida con ${msjIntentos} intentos restantes`
 }
+
 
 // codigo para pasar de la dificultad a las preguntas del juego
 
@@ -176,6 +175,18 @@ selectDificultad.addEventListener("change", () => {
 
 const BotonValoracion = document.getElementById("btnValoracion")
 
+const contenedor = document.getElementById("contenedorBtnVlarocaion");
+
+function enviarValoracion(mensaje){
+    return new Promise( (resolve, reject) =>{
+        if(mensaje !== " "){
+            resolve("valoracion enviada con exito");
+        }else {
+            reject("error")
+        }
+    });
+}
+
 BotonValoracion.onclick = async() =>{
     const {value: valoracion }= await Swal.fire({
         input: 'text',
@@ -187,7 +198,11 @@ BotonValoracion.onclick = async() =>{
             icon: `success`
         })
     }
-    if( valoracion !== " "){
-        console.log(`la valoracion fue ${valoracion}`)
-    }   
+    enviarValoracion(valoracion).then( (mensaje)=>{
+        contenedor.innerHTML = `<strong style="color: green">${mensaje}</strong>`
+        BotonValoracion.style.display = "none"
+    }).catch( (errorFormulario)=>{
+        contenedor.innerHTML = `<strong style="color: red">${errorFormulario}</strong>
+        input.value = " "`;
+    });
 }
