@@ -145,7 +145,7 @@ let listaPreguntas = [
     //Dificultad media
     {
         categoria: "media",
-        pregunta: "cual es la capital de Noruega: ",
+        pregunta: "Cual es la capital de Noruega: ",
         correcta: "Oslo",
         incorrecta:[
             "Bergen",
@@ -155,7 +155,17 @@ let listaPreguntas = [
     },
     {
         categoria: "media",
-        pregunta: "cual es la capital de Croacia: ",
+        pregunta: "¿De que país es esta bandera? 🇵🇱 ",
+        correcta: "Polonia",
+        incorrecta:[
+            "Emiratos Arabes",
+            "Montenegro",
+            "Serbia"
+        ]
+    },
+    {
+        categoria: "media",
+        pregunta: "Cual es la capital de Croacia: ",
         correcta: "Zagreb",
         incorrecta:[
             "Zadar",
@@ -165,12 +175,112 @@ let listaPreguntas = [
     },
     {
         categoria: "media",
-        pregunta: "cual es la capital de Finlandia: ",
+        pregunta: "¿De que país es esta bandera? 🇰🇷 ",
+        correcta: "Corea del Sur",
+        incorrecta:[
+            "Corea del Norte",
+            "Japon",
+            "Fiji"
+        ]
+    },
+    {
+        categoria: "media",
+        pregunta: "Cual es la capital de Finlandia: ",
         correcta: "Helsinki",
         incorrecta:[
             "Espoo",
             "Vantaa",
             "Porvoo"
+        ]
+    },
+    {
+        categoria: "media",
+        pregunta: "¿De que país es esta bandera? 🇸🇪 ",
+        correcta: "Suecia",
+        incorrecta:[
+            "Noruega",
+            "Estonia",
+            "Austria"
+        ]
+    },
+    {
+        categoria: "media",
+        pregunta: "Cual es la capital de Australia: ",
+        correcta: "Canberra",
+        incorrecta:[
+            "Sidney",
+            "Adelaida",
+            "Melbourne"
+        ]
+    },
+    {
+        categoria: "media",
+        pregunta: "¿De que país es esta bandera? 🇯🇲 ",
+        correcta: "Jamaica",
+        incorrecta:[
+            "Honduras",
+            "Cuba",
+            "Puerto Principe"
+        ]
+    },
+    {
+        categoria: "media",
+        pregunta: "Cual es la capital de Rusia: ",
+        correcta: "Moscú",
+        incorrecta:[
+            "Kazán",
+            "Mariúpol",
+            "Melbourne"
+        ]
+    },
+    {
+        categoria: "media",
+        pregunta: "¿De que país es esta bandera? 🇭🇺 ",
+        correcta: "Hungria",
+        incorrecta:[
+            "Lituania",
+            "Turquia",
+            "Nigeria"
+        ]
+    },
+    {
+        categoria: "media",
+        pregunta: "Cual es la capital de Ucrania: ",
+        correcta: "Kiev",
+        incorrecta:[
+            "Jersón",
+            "Odesa",
+            "Járkov"
+        ]
+    },
+    {
+        categoria: "media",
+        pregunta: "¿De que país es esta bandera? 🇪🇪 ",
+        correcta: "Estonia",
+        incorrecta:[
+            "Italia",
+            "Suiza",
+            "Polonia"
+        ]
+    },
+    {
+        categoria: "media",
+        pregunta: "Cual es la capital de Suiza: ",
+        correcta: "Berna",
+        incorrecta:[
+            "Zurich",
+            "Lugano",
+            "Lausuana"
+        ]
+    },
+    {
+        categoria: "media",
+        pregunta: "¿De que país es esta bandera? 🇲🇬 ",
+        correcta: "Madagascar",
+        incorrecta:[
+            "Sudafrica",
+            "Niger",
+            "Congo"
         ]
     },
     //
@@ -189,12 +299,32 @@ let listaPreguntas = [
     },
     {
         categoria: "dificil",
+        pregunta: "¿De que país es esta bandera? 🇲🇩 ",
+        correcta: "Moldavia",
+        incorrecta:[
+            "Suecia",
+            "Filipinas",
+            "Tailandia"
+        ]
+    },
+    {
+        categoria: "dificil",
         pregunta: "cual es la capital de Kirguistán: ",
         correcta: "Biskek",
         incorrecta:[
             "Osh",
             "Karakol",
             "Jeti Oguz"
+        ]
+    },
+    {
+        categoria: "dificil",
+        pregunta: "¿De que país es esta bandera? 🇦🇱 ",
+        correcta: "Albania",
+        incorrecta:[
+            "Singapour",
+            "Malasia",
+            "Camboya"
         ]
     },
     {
@@ -206,5 +336,95 @@ let listaPreguntas = [
             "Beira",
             "Xai-Xai"
         ]
-    }
+    },
+    {
+        categoria: "dificil",
+        pregunta: "¿De que país es esta bandera? 🇬🇮 ",
+        correcta: "Gibraltar",
+        incorrecta:[
+            "Laos",
+            "Israel",
+            "Mongolia"
+        ]
+    },
+    {
+        categoria: "dificil",
+        pregunta: "cual es la capital de Bangladesh: ",
+        correcta: "Daca",
+        incorrecta:[
+            "Maputo",
+            "Tongi",
+            "Rangpur"
+        ]
+    },
+    {
+        categoria: "dificil",
+        pregunta: "¿De que país es esta bandera? 🇰🇭 ",
+        correcta: "Camboya",
+        incorrecta:[
+            "Laos",
+            "China",
+            "Indonesia"
+        ]
+    },
+    {
+        categoria: "dificil",
+        pregunta: "cual es la capital de Afganistán: ",
+        correcta: "Kabul",
+        incorrecta:[
+            "Pemba",
+            "Abuya",
+            "Gazni"
+        ]
+    },
+    {
+        categoria: "dificil",
+        pregunta: "¿De que país es esta bandera? 🇲🇹 ",
+        correcta: "Malta",
+        incorrecta:[
+            "Filipinas",
+            "Nepal",
+            "Egipto"
+        ]
+    },
+    {
+        categoria: "dificil",
+        pregunta: "cual es la capital de Sri Lanka: ",
+        correcta: "Sri Jayawardenapura Kotte",
+        incorrecta:[
+            "Kandy",
+            "Galle",
+            "Tangalle"
+        ]
+    },
+    {
+        categoria: "dificil",
+        pregunta: "¿De que país es esta bandera? 🇱🇹 ",
+        correcta: "Lituania",
+        incorrecta:[
+            "Letonia",
+            "Estonia",
+            "Luxemburgo"
+        ]
+    },
+    {
+        categoria: "dificil",
+        pregunta: "cual es la capital de Israel: ",
+        correcta: "Jerusalen",
+        incorrecta:[
+            "Haifa",
+            "Lod",
+            "Hadera"
+        ]
+    },
+    {
+        categoria: "dificil",
+        pregunta: "¿De que país es esta bandera? 🇨🇬 ",
+        correcta: "Republica del Congo",
+        incorrecta:[
+            "Kenia",
+            "Tanzania",
+            "Etiopía"
+        ]
+    },
 ]

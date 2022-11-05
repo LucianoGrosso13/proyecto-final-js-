@@ -2,6 +2,7 @@ let puntos = 0;
 let intentos = 3;
 let indicePregunta = 0;
 let dif = " ";
+let resultado = " ";
 let msjIntentos = 0;
 
 dificultadFacil = listaPreguntas.filter( (listaPreguntas) => {
@@ -48,7 +49,7 @@ function cargarPregunta(i,vectorDificultad){
 }
 
 // inicializa el juego con la dificultad elegida
-function seleccionarDificultad(vectorDificultad,dificultadValue,dificultadCategoria){
+function seleccionarDificultad(vectorDificultad){
 
     //carga las preguntas
     for(let i=0;  i<14; i++){
@@ -60,11 +61,6 @@ function seleccionarDificultad(vectorDificultad,dificultadValue,dificultadCatego
 // //funcion para que te diga si la opcion es correcta o incorrecta
 function elegirOpcion(i){
     validezRespuesta = opciones[i] == objetoCorrecta;
-
-    let dif =" "
-
-    let resultado = " "
-
 
     if(validezRespuesta){
         puntos+=1;
@@ -105,7 +101,8 @@ function elegirOpcion(i){
             dif = "dificil"
             break;
     }
-    msjIntentos=intentos;
+
+    msjIntentos = intentos;
 
     if(puntos===5){
         resultado = "ganaste"
@@ -133,14 +130,15 @@ function elegirOpcion(i){
         puntos = 0
         intentos = 3
     }       
-    //guardo el resultado de tu ultima partida para luego mostrarte
-    localStorage.setItem("resultado:",resultado);
-    
-    localStorage.setItem("dificultad:",dif);
-            
-    //muestro la dificultad de tu ultima partida y su resultado
-    let textoUltimaPartida = document.getElementById("ultimapartida")
-    textoUltimaPartida.innerHTML = `Tu ultima partida fue en la dificultad ${dif} y ${resultado} la partida con ${msjIntentos} intentos restantes`
+
+    localStorage.setItem("resultado:",resultado)
+    localStorage.setItem("intentos:",msjIntentos);
+
+    if(msjIntentos===0){
+        textoUltimaPartida.innerHTML = `Tu ultima partida fue en la dificultad ${dif} y ${resultado} la partida.`;
+    } else{
+        textoUltimaPartida.innerHTML = `Tu ultima partida fue en la dificultad ${dif} y ${resultado} la partida con ${msjIntentos} intentos.`;
+    }
 }
 
 
@@ -161,17 +159,37 @@ selectDificultad.addEventListener("change", () => {
     
     switch (selectDificultad.value){
         case "Facil":
-            seleccionarDificultad(dificultadFacil,"Facil","facil");
+            seleccionarDificultad(dificultadFacil);
+            dif = "facil"
             break;
         case "Media":
-            seleccionarDificultad(dificultadMedia,"Media","media");
+            seleccionarDificultad(dificultadMedia);
+            dif = "media"
             break;
         case "Dificil":
-            seleccionarDificultad(dificultadDificil,"Dificil","dificil");
+            seleccionarDificultad(dificultadDificil);
+            dif = "dificil"
             break;
     }
+    localStorage.setItem("dificultad:",dif);
+
 
 });
+
+let textoUltimaPartida = document.getElementById("ultimapartida");
+
+dif = localStorage.getItem("dificultad:");
+
+resultado = localStorage.getItem("resultado:");
+
+if(msjIntentos===0){
+    textoUltimaPartida.innerHTML = `Tu ultima partida fue en la dificultad ${dif} y ${resultado} la partida.`;
+} else{
+    textoUltimaPartida.innerHTML = `Tu ultima partida fue en la dificultad ${dif} y ${resultado} la partida con ${msjIntentos} intentos.`;
+}
+
+
+
 
 const BotonValoracion = document.getElementById("btnValoracion")
 
@@ -199,7 +217,7 @@ BotonValoracion.onclick = async() =>{
         })
     }
     enviarValoracion(valoracion).then( (mensaje)=>{
-        contenedor.innerHTML = `<strong style="color: green">${mensaje}</strong>`
+        contenedor.innerHTML = `<strong">${mensaje}</strong>`
         BotonValoracion.style.display = "none"
     }).catch( (errorFormulario)=>{
         contenedor.innerHTML = `<strong style="color: red">${errorFormulario}</strong>
