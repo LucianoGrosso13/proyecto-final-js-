@@ -4,28 +4,37 @@ let indicePregunta = 0;
 let dif = " ";
 let resultado = " ";
 
-dificultadFacil = listaPreguntas.filter( (listaPreguntas) => {
-    return listaPreguntas.categoria==="facil";
+//leo mi archivo json
+fetch("base_de_preguntas.json")
+.then((response) => {
+    return response.json()
 })
-dificultadFacil.sort(()=> Math.random()-0.5);
-
-dificultadMedia = listaPreguntas.filter( (listaPreguntas) => {
-    return listaPreguntas.categoria==="media";
-})
-dificultadMedia.sort(()=> Math.random()-0.5);
-
-dificultadDificil = listaPreguntas.filter( (listaPreguntas) => {
-    return listaPreguntas.categoria==="dificil";
-})
-dificultadDificil.sort(()=> Math.random()-0.5);
-
-const paso1 = document.getElementById("paso1");
-const paso2 = document.getElementById("paso2");
-
-const selectDificultad = document.getElementById("dificultad");
+.then((preguntas =>{
 
 
-// Funciones
+    // defino cada vector dificultad para luego poder cargar el juego dependiendo la dificultad seleccionada
+    dificultadFacil = preguntas.filter((preguntas) => {
+        return preguntas.categoria==="facil";
+    })
+    //mezclo el vector para que cada vez que entre a la pagina el orden de las preguntas no sea el mismo
+    dificultadFacil.sort(()=> Math.random()-0.5);
+
+    dificultadMedia = preguntas.filter((preguntas) => {
+        return preguntas.categoria==="media";
+    })
+    dificultadMedia.sort(()=> Math.random()-0.5);
+
+    dificultadDificil = preguntas.filter((preguntas) => {
+        return preguntas.categoria==="dificil";
+    })
+    dificultadDificil.sort(()=> Math.random()-0.5);
+
+}))
+
+// funcion para mezcla el vector cuando se quiera volver a jugar ya habiendo terminado una partida, asi sea aleatorio nuevamente el orden de las preguntas
+function mezclar(vectorDificultad){
+    vectorDificultad.sort(()=>Math.random()-0.5);
+}
 
 //carga la pregunta, y desordena las opciones 
 function cargarPregunta(i,vectorDificultad){
@@ -33,12 +42,14 @@ function cargarPregunta(i,vectorDificultad){
     //guardo la opcion correcta en una variable para poder usarla en la funcion de elegir opcciones
     objetoCorrecta = vectorDificultad[i].correcta
 
+    //hago un vector con las opcciones y lo desordeno
     opciones = [...vectorDificultad[i].incorrecta];
 
     opciones.push(vectorDificultad[i].correcta);
 
     opciones.sort(()=> Math.random()-0.5)
 
+    //obtengo los id de los botones y le asigno las opciones a cada boton
     document.getElementById("pregunta").innerHTML = vectorDificultad[i].pregunta;
     document.getElementById("opcion1").innerHTML = opciones[0];
     document.getElementById("opcion2").innerHTML = opciones[1];
@@ -51,72 +62,71 @@ function cargarPregunta(i,vectorDificultad){
 function seleccionarDificultad(vectorDificultad){
 
     //carga las preguntas
-    for(let i=0;  i<14; i++){
+    for(let i=0;  i<1; i++){
         cargarPregunta(i,vectorDificultad)
     }
 }
 
 
-// //funcion para que te diga si la opcion es correcta o incorrecta
+// //funcion para que te diga si la opcion es correcta o incorrecta, al alcanzar los puntos requeridos termina el juego
 function elegirOpcion(i){
     validezRespuesta = opciones[i] == objetoCorrecta;
 
     if(validezRespuesta){
+        indicePregunta+=1;
         puntos+=1;
-        console.log(`tus puntos son ${puntos}`);
         Swal.fire({
             title: " Respuesta Correcta",
             text: "La respuesta es correcta",
             icon: "success",
         }); 
     } else{
-        console.log(intentos)
+        indicePregunta+=1;
         intentos-=1
-        console.log(`te quedan ${intentos} intentos`)
         Swal.fire({
             title: " Respuesta Incorrecta",
             text: `La respuesta correcta es "${objetoCorrecta}" `,
             icon: "error",
         });
     }
-         
+
+    //sirve para ver que dificultad se eligio asi comience a cargar el vector de dicha dificultad
     switch (selectDificultad.value){
         case "Facil":
-            console.log(`indice de pregunta ${indicePregunta}`)
             cargarPregunta(indicePregunta,dificultadFacil)
-            indicePregunta+=1;
             dif = "facil"
             break;
         case "Media":
-            console.log(`indice de pregunta ${indicePregunta}`)
             cargarPregunta(indicePregunta,dificultadMedia)
-            indicePregunta+=1;
             dif = "media"
             break;
         case "Dificil":
-            console.log(`indice de pregunta ${indicePregunta}`)
             cargarPregunta(indicePregunta,dificultadDificil)
-            indicePregunta+=1;
             dif = "dificil"
             break;
     }
 
     if(puntos===5){
         resultado = "ganaste"
-        console.log(resultado)
         Swal.fire({
             title: `Ganaste la dificultad ${selectDificultad.value}, felicidades!`,
             text: `Te quedaba ${intentos} intentos`,
         });
+        // vuelve a mostrarte la ventana inicial para elegir la dificultad y que puedas volver a inicar el juego
         paso1.className=""
         paso2.className="noMostrar"
         selectDificultad.value = " "
+        //pongo las variables a su valor original para que se pueda volver a jugar
         puntos = 0
         intentos = 3
+        indicePregunta=0
+        //desordeno nuevamente los vectores asi no sea igual que la vez anterior
+        mezclar(dificultadFacil)
+        mezclar(dificultadMedia)
+        mezclar(dificultadDificil)
     }
     if(intentos===0){
         resultado = "perdiste"
-        console.log(resultado)
         Swal.fire({
             title: `Perdiste la dificultad ${selectDificultad.value}, espero que lo reintentes!`,
             text: `Te quedaste sin intentos`,
@@ -126,16 +136,26 @@ function elegirOpcion(i){
         selectDificultad.value = " "
         puntos = 0
         intentos = 3
+        indicePregunta=0
+        mezclar(dificultadFacil)
+        mezclar(dificultadMedia)
+        mezclar(dificultadDificil)
     }       
 
+    //guardo el resultado de tu partida
     localStorage.setItem("resultado:",resultado);
-
+    
+    //creo el texto con la info de tu ultima partida asi se muestre al terminarla
     textoUltimaPartida.innerHTML = `Tu ultima partida fue en la dificultad ${dif} y ${resultado} la partida.`;
     
 }
 
+// codigo para pasar de la ventana de inicio a las preguntas
 
-// codigo para pasar de la dificultad a las preguntas del juego
+const paso1 = document.getElementById("paso1");
+const paso2 = document.getElementById("paso2");
+
+const selectDificultad = document.getElementById("dificultad");
 
 selectDificultad.addEventListener("change", () => {
 
@@ -164,29 +184,34 @@ selectDificultad.addEventListener("change", () => {
             dif = "dificil"
             break;
     }
+    //guardo la dificultad elegida
     localStorage.setItem("dificultad:",dif);
 
 
 });
 
+
+//tomo el id del elemento html en donde va a aparecer el msj
 const textoUltimaPartida = document.getElementById("ultimapartida");
 
-dif = localStorage.getItem("dificultad:");
+//creo el mensaje usando los datos del storage
+textoUltimaPartida.innerHTML = `Tu ultima partida fue en la dificultad ${localStorage.getItem("dificultad:")} y ${resultado = localStorage.getItem("resultado:")} la partida.`;
 
-resultado = localStorage.getItem("resultado:");
-
-textoUltimaPartida.innerHTML = `Tu ultima partida fue en la dificultad ${dif} y ${resultado} la partida.`;
-
+//variable para el btn de valoracion
 const BotonValoracion = document.getElementById("btnValoracion")
 
 const contenedor = document.getElementById("contenedorBtnVlarocaion");
 
+//funcion para ver si el input tiene algo escrito
 function enviarValoracion(mensaje){
     return new Promise( (resolve, reject) =>{
-        if(mensaje !== " "){
+        if(mensaje !== ""){
             resolve("valoracion enviada con exito");
         }else {
-            reject("error")
+            reject(Swal.fire({
+                text: `la valoracion esta vacia.`,
+                icon: `error`
+            }))
         }
     });
 }
@@ -196,7 +221,7 @@ BotonValoracion.onclick = async() =>{
         input: 'text',
         inputLabel: 'Escribe tu valoración',
     }) 
-    if(valoracion){
+    if(valoracion !== ""){
         Swal.fire({
             text:`Gracias por valorarme!`,
             icon: `success`
@@ -204,9 +229,7 @@ BotonValoracion.onclick = async() =>{
     }
     enviarValoracion(valoracion).then( (mensaje)=>{
         contenedor.innerHTML = `<strong">${mensaje}</strong>`
+        console.log(valoracion)
         BotonValoracion.style.display = "none"
-    }).catch( (errorFormulario)=>{
-        contenedor.innerHTML = `<strong style="color: red">${errorFormulario}</strong>
-        input.value = " "`;
-    });
+    })
 }
