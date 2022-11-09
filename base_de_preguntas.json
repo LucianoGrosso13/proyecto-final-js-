@@ -141,7 +141,7 @@
     },
     {
       "categoria":"media",
-      "pregunta":"Cual es la capital de Noruega: ",
+      "pregunta":"¿Cual es la capital de Noruega? ",
       "correcta":"Oslo",
       "incorrecta":[
         "Bergen",
@@ -161,7 +161,7 @@
     },
     {
       "categoria":"media",
-      "pregunta":"Cual es la capital de Croacia: ",
+      "pregunta":"¿Cual es la capital de Croacia? ",
       "correcta":"Zagreb",
       "incorrecta":[
         "Zadar",
@@ -181,7 +181,7 @@
     },
     {
       "categoria":"media",
-      "pregunta":"Cual es la capital de Finlandia: ",
+      "pregunta":"¿Cual es la capital de Finlandia? ",
       "correcta":"Helsinki",
       "incorrecta":[
         "Espoo",
@@ -201,7 +201,7 @@
     },
     {
       "categoria":"media",
-      "pregunta":"Cual es la capital de Australia: ",
+      "pregunta":"¿Cual es la capital de Australia? ",
       "correcta":"Canberra",
       "incorrecta":[
         "Sidney",
@@ -221,7 +221,7 @@
     },
     {
       "categoria":"media",
-      "pregunta":"Cual es la capital de Rusia: ",
+      "pregunta":"¿Cual es la capital de Rusia? ",
       "correcta":"Moscú",
       "incorrecta":[
         "Kazán",
@@ -241,7 +241,7 @@
     },
     {
       "categoria":"media",
-      "pregunta":"Cual es la capital de Ucrania: ",
+      "pregunta":"¿Cual es la capital de Ucrania? ",
       "correcta":"Kiev",
       "incorrecta":[
         "Jersón",
@@ -261,7 +261,7 @@
     },
     {
       "categoria":"media",
-      "pregunta":"Cual es la capital de Suiza: ",
+      "pregunta":"¿Cual es la capital de Suiza? ",
       "correcta":"Berna",
       "incorrecta":[
         "Zurich",
@@ -281,7 +281,7 @@
     },
     {
       "categoria":"dificil",
-      "pregunta":"cual es la capital de Nigeria: ",
+      "pregunta":"¿Cual es la capital de Nigeria? ",
       "correcta":"Lagos",
       "incorrecta":[
         "Kano",
@@ -301,7 +301,7 @@
     },
     {
       "categoria":"dificil",
-      "pregunta":"cual es la capital de Kirguistán: ",
+      "pregunta":"¿Cual es la capital de Kirguistán? ",
       "correcta":"Biskek",
       "incorrecta":[
         "Osh",
@@ -321,7 +321,7 @@
     },
     {
       "categoria":"dificil",
-      "pregunta":"cual es la capital de Mozambike: ",
+      "pregunta":"¿Cual es la capital de Mozambike? ",
       "correcta":"Maputo",
       "incorrecta":[
         "Pemba",
@@ -341,7 +341,7 @@
     },
     {
       "categoria":"dificil",
-      "pregunta":"cual es la capital de Bangladesh: ",
+      "pregunta":"¿Cual es la capital de Bangladesh? ",
       "correcta":"Daca",
       "incorrecta":[
         "Maputo",
@@ -361,7 +361,7 @@
     },
     {
       "categoria":"dificil",
-      "pregunta":"cual es la capital de Afganistán: ",
+      "pregunta":"¿Cual es la capital de Afganistán? ",
       "correcta":"Kabul",
       "incorrecta":[
         "Pemba",
@@ -381,7 +381,7 @@
     },
     {
       "categoria":"dificil",
-      "pregunta":"cual es la capital de Sri Lanka: ",
+      "pregunta":"¿Cual es la capital de Sri Lanka? ",
       "correcta":"Sri Jayawardenapura Kotte",
       "incorrecta":[
         "Kandy",
@@ -401,7 +401,7 @@
     },
     {
       "categoria":"dificil",
-      "pregunta":"cual es la capital de Israel: ",
+      "pregunta":"¿Cual es la capital de Israel? ",
       "correcta":"Jerusalen",
       "incorrecta":[
         "Haifa",
