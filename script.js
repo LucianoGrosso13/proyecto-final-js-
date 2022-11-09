@@ -3,7 +3,6 @@ let intentos = 3;
 let indicePregunta = 0;
 let dif = " ";
 let resultado = " ";
-let msjIntentos = 0;
 
 dificultadFacil = listaPreguntas.filter( (listaPreguntas) => {
     return listaPreguntas.categoria==="facil";
@@ -102,14 +101,12 @@ function elegirOpcion(i){
             break;
     }
 
-    msjIntentos = intentos;
-
     if(puntos===5){
         resultado = "ganaste"
         console.log(resultado)
         Swal.fire({
             title: `Ganaste la dificultad ${selectDificultad.value}, felicidades!`,
-            text: `Te quedaban ${intentos} intentos`,
+            text: `Te quedaba ${intentos} intentos`,
         });
         paso1.className=""
         paso2.className="noMostrar"
@@ -131,14 +128,10 @@ function elegirOpcion(i){
         intentos = 3
     }       
 
-    localStorage.setItem("resultado:",resultado)
-    localStorage.setItem("intentos:",msjIntentos);
+    localStorage.setItem("resultado:",resultado);
 
-    if(msjIntentos===0){
-        textoUltimaPartida.innerHTML = `Tu ultima partida fue en la dificultad ${dif} y ${resultado} la partida.`;
-    } else{
-        textoUltimaPartida.innerHTML = `Tu ultima partida fue en la dificultad ${dif} y ${resultado} la partida con ${msjIntentos} intentos.`;
-    }
+    textoUltimaPartida.innerHTML = `Tu ultima partida fue en la dificultad ${dif} y ${resultado} la partida.`;
+    
 }
 
 
@@ -176,20 +169,13 @@ selectDificultad.addEventListener("change", () => {
 
 });
 
-let textoUltimaPartida = document.getElementById("ultimapartida");
+const textoUltimaPartida = document.getElementById("ultimapartida");
 
 dif = localStorage.getItem("dificultad:");
 
 resultado = localStorage.getItem("resultado:");
 
-if(msjIntentos===0){
-    textoUltimaPartida.innerHTML = `Tu ultima partida fue en la dificultad ${dif} y ${resultado} la partida.`;
-} else{
-    textoUltimaPartida.innerHTML = `Tu ultima partida fue en la dificultad ${dif} y ${resultado} la partida con ${msjIntentos} intentos.`;
-}
-
-
-
+textoUltimaPartida.innerHTML = `Tu ultima partida fue en la dificultad ${dif} y ${resultado} la partida.`;
 
 const BotonValoracion = document.getElementById("btnValoracion")
 
